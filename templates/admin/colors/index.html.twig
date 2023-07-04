@@ -1,0 +1,42 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Liste des couleurs{% endblock  %}
+
+{% block body %}
+    <div class= "container">
+        <div class= "row">
+           {% include "_partials/_adminnav.html.twig" %}
+           <main class= "col-9 border border-light bg-light p-2">
+                <h1>Liste des couleurs</h1>
+                <table class= "table">
+                    <thead>
+                        <tr>
+                            <td>ID</td>
+                            <td>name</td>
+                            <td>actions</td>
+                        
+                        </tr>
+                
+                    </thead>
+                    <tbody>
+                        {% for color in colors %}
+                            <tr>
+                                <td>{{ color.id }}</td>
+                                <td>{{ color.name }}</td>
+                                <td>
+                                        <a class="btn btn-success" href="">Modifier</a>
+                                        <a class="btn btn-danger" href="{{ path('admin_colors_delete', {id: color.id}) }}">Supprimer</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            
+           </main>
+        
+            </div>
+        
+        </div>
+
+    </div>
+{% endblock  %}

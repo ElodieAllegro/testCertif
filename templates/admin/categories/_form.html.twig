@@ -1,0 +1,28 @@
+{# templates/admin/categories/_form.html.twig #}
+{{ form_start(form) }}
+    {{ form_row(form.name, {
+        'label': 'Nom de la catégorie'
+    }) }}
+    {{ form_row(form.parent, {
+        'label': 'Catégorie parente',
+        'empty_data': null,
+        'placeholder': 'Sélectionner une catégorie parente'
+    }) }}
+    {{ form_row(form.save, {
+        'label': 'Enregistrer'
+    }) }}
+{{ form_end(form) }}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

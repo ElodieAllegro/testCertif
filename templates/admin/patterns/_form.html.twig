@@ -1,0 +1,17 @@
+ {{ form_start(patternForm) }}
+ 
+ {# On affiche les images si on est en édition #}
+    {% if app.request.attributes.get('_route') == 'admin_patterns_edit' %}
+        <h2>Images</h2>
+        {% for image in pattern.images %}
+            <div>
+                <img src="{{ asset('assets/uploads/patterns/mini/80x80-' ~ image.name ) }}" alt="Image" width="150">
+                <a href="{{ path('admin_patterns_delete_image', {id: image.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">Supprimer</a>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    {{ form_row(patternForm.images) }}
+ {{ form_row(patternForm.ref) }}
+    <button type="submit" class="btn btn-primary">{{ button_label|default('Ajouter') }}</button>
+{{ form_end(patternForm) }} 

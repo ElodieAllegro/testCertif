@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}liste des produits{% endblock %}
+
+{% block body %}
+
+<main class="container">
+   <section class="row">
+    <div class="col-12 mt-5">
+        <h1 class="text-center">{{ category.name }}</h1>
+    </div>
+    {% for product in products %}
+        <div class="col-sm-12 col-md-3 mt-4">
+            <div class="card bg-light my-5 rounded-4">
+                 <div class="card-body rounded-4" id="category">
+                
+                   <h3 class="card-title  text-center mt-5  pt-5 "><a href="{{ path('products_details', { "slug": product.slug }) }}" class="text-uppercase text-dark">{{ product.name }}</a></h3> 
+
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</section>
+
+
+</main>
+{% endblock %}
+

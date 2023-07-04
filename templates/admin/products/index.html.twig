@@ -1,0 +1,93 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Liste des produits{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            {% include "_partials/_adminnav.html.twig" %}
+            <main class="col-9 border border-light bg-light p-2">
+                <h1>Liste des produits</h1>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Photo</th>
+                            <th>Nom</th>
+                            <th>Prix</th>
+                            <th>Stock</th>
+                            <th>Catégorie</th>
+                            <th>Couleurs</th>
+                            <th>Tailles</th>
+                            <th>Patterns</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for produit in produits %}
+                            <tr>
+                                <td>{{ produit.id }}</td>
+                                {% if produit.images is not empty %}
+                                    <td><img src="{{ asset('assets/uploads/products/mini/300x300-' ~ produit.images[0].name) }}" class="img-thumbnail" alt="{{ produit.name }}"></td>
+                                {% else %}
+                                    <td>No image available</td>
+                                {% endif %}
+                                <td>{{ produit.name }}</td>
+                                <td>{{ produit.price/100 }}</td>
+                                <td>{{ produit.stock }}</td>
+                                <td>{{ produit.categories.name }}</td>
+                               <td>
+                                    {% for color in produit.colors %}
+                                        {{ color.name }}
+                                        {% if not loop.last %}, {% endif %}
+                                    {% endfor %}
+                                </td>
+                              <td>
+                                    {% for size in produit.size %}
+                                        {{ size.value }}
+                                        {% if not loop.last %}, {% endif %}
+                                    {% endfor %}
+                                </td>
+                              <td>
+                                    {% for pattern in produit.patterns %}
+                                        {{ pattern.ref }}
+                                        {% if not loop.last %}, {% endif %}
+                                    {% endfor %}
+                                </td>
+
+                                <td>
+                                    <a class="btn btn-success" href="{{ path('admin_products_edit', {id: produit.id}) }}">Modifier</a>
+                                    <a class="btn btn-danger" href="{{ path('admin_products_delete', {id: produit.id}) }}">Supprimer</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </main>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

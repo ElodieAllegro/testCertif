@@ -1,0 +1,63 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom border-2">
+    <div class="container-fluid">
+   
+        <a class="navbar-brand" href="{{ path ('main')}}">
+            <img src="{{ asset('assets/uploads/image/logo.png') }}" class="d-block" alt="Logo" />
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                <li class="nav-item">
+                <a class="nav-link active mx-5" aria-current="page" href="{{ path('app_categories_list', {'slug': 'sneakers'}) }}">Sneakers</a>
+
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active mx-5" aria-current="page" href="{{path ('app_realisations')}}">Réalisations</a>
+                </li>
+                {# <li class="nav-item">
+                    <a class="nav-link active mx-5" aria-current="page" href="#!">Mon compte</a>
+                </li> #}
+            </ul>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          {% if app.user %}
+                      {% if is_granted('ROLE_PRODUCT_ADMIN') %}
+                          <li class="nav-item">
+                              <a class="nav-link" href="{{ path('admin_index') }}">Administration</a>
+                          </li>
+                      {% endif %}
+                      <li class="nav-item">
+                          <a class="nav-link active mx-5" href="">Mon compte</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link active mx-5" href="{{ path('app_logout') }}">Me déconnecter</a>
+                      </li>
+                  {% else %}
+                      <li class="nav-item">
+                          <a class="nav-link active mx-5" href="{{ path('app_register') }}">M'inscrire</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link active mx-5" href="{{ path('app_login') }}">Me Connecter</a>
+                      </li>
+          {% endif %}
+        </ul>
+            <form class="d-flex">
+                <button class="btn btn-outline-success" type="submit" aria-label="Panier">
+                    <div class="row">
+                        <div class="col-8">
+                            <img src="{{ asset('assets/uploads/image/panier1.svg') }}" class="d-block" alt="Image du panier" />
+                        </div>
+                        <div class="col-4">
+                            <span class="badge bg-dark text-white ms-1 rounded-pill" aria-label="Nombre d'articles dans le panier">0</span>
+                        </div>
+                    </div>
+                </button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+
+
+        

@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des catégories{% endblock %}
+
+{% block body %}
+
+    <main class="container">
+        <div class="row">
+            {% for category in categories %}
+                {% if category.parent == null %}
+                    <div class="col-12 mt-5">
+                        <h2 class="text-center">{{ category.name }}</h2>
+                    </div>
+                {% else %}
+                    <div class="col-sm-12 col-md-3 mt-4">
+                        <div class="card bg-light my-5 rounded-4" id="category">
+                            <div class="card-body rounded-4" id="category">
+                                <h2 class="card-title text-center mt-5  pt-5 "><a href="{{ path('products_list', {slug: category.slug}) }}" class="text-uppercase text-dark">{{ category.name }}</a></h2>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </main>
+
+{% endblock %}

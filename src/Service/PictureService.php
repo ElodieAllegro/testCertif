@@ -17,11 +17,12 @@ class PictureService
     }
     public function add(UploadedFile $picture, ?string $folder = '', ?int $width = 255, ?int $height = 250)
     {
-        // on donne un nom à l'image
-        $fichier = md5(uniqid(rand(), true)).'.webp';
-        //on va recuperer les infos de l'image 
+       // on va récupérer les infos de l'image 
         $picture_infos = getimagesize($picture);
-        
+
+        // on utilise le nom d'origine de l'image comme nom de fichier
+        $fichier = $picture->getClientOriginalName();
+
         if ($picture_infos === false)
         {
             throw new Exception('Format d\'image incorrect');

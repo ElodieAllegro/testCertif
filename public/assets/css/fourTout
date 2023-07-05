@@ -1,0 +1,33 @@
+   
+   
+   
+   //logique de products/details pour recuperer les pattens 
+    <div class="container">
+                    <h5>Patterns</h5>
+                    {% for pattern in product.patterns %}
+                        <a href="#" class="pattern-link" data-pattern-id="{{ pattern.id }}">
+                            <img id="pattern{{ pattern.id }}" height="70" src="{{ asset('assets/uploads/patterns/' ~ pattern.img ) }}" alt="{{ pattern.ref }}"/>
+                        </a>
+                        <button class="btn"></button>
+                    {% endfor %}
+            </div> #}
+
+
+            {# <div class="container">
+                <h5>Patterns</h5>
+                {% for pattern in product.patterns %}
+                    <img id="pattern{{ pattern.id }}" height="70" src="{{ asset('assets/uploads/patterns/' ~ pattern.img ) }}" alt="{{ pattern.ref }}"/>
+                            <button class="btn" > </button>
+                {% endfor %}
+
+            </div> #}
+
+
+
+            //logique pour les tailles
+            <h5>Tailles: 
+                    {# <select class="form-select" onchange="toggleSizeSelection(this)">
+                        {% for size in product.sizes %}
+                             <option value="{{ value }}">{{ value }}</option>
+                        {% endfor %}
+                    </select> #}

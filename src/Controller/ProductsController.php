@@ -13,11 +13,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ProductsController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(): Response
+    public function index(ProductsRepository $productsRepository): Response
     {
-        return $this->render('products/index.html.twig');
+        $products = $productsRepository->findAll();
+        return $this->render('products/index.html.twig', compact('products'));
     }
-
+    
     #[Route('/liste/{slug}', name: 'list')]
     public function list(Categories $category): Response
     {

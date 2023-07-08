@@ -65,6 +65,7 @@ class ProductsController extends AbstractController
 
                 $img = new Images();
                 $img->setName($fichier);
+                $img->setReference(pathinfo($fichier, PATHINFO_FILENAME)); // Utilisation du nom de l'image sans son extension comme référence
                 $product->addImage($img);
             }
 
@@ -85,8 +86,10 @@ class ProductsController extends AbstractController
             return $this->redirectToRoute('admin_products_index');
         }
 
-        return $this->renderForm('admin/products/add.html.twig', compact('productForm'));
-        // ['productForm' => $productForm]
+        return $this->render('admin/products/add.html.twig', [
+            'productForm' => $productForm,
+        ]);
+       
     }
 
     #[Route('/edition/{id}', name: 'edit')]
@@ -118,6 +121,7 @@ class ProductsController extends AbstractController
 
                 $img = new Images();
                 $img->setName($fichier);
+                $img->setReference(pathinfo($fichier, PATHINFO_FILENAME)); // Utilisation du nom de l'image sans son extension comme référence
                 $product->addImage($img);
             }
             
@@ -142,9 +146,7 @@ class ProductsController extends AbstractController
             'productForm' => $productForm->createView(),
             'product' => $product
         ]);
-        //exemple 2
-        // return $this->renderForm('admin/products/edit.html.twig', compact('productForm'));
-        // ['productForm' => $productForm]
+        
     }
 
     #[Route('/suppression/{id}', name: 'delete')]

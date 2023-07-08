@@ -28,6 +28,9 @@ class Images
     #[ORM\ManyToOne(inversedBy: 'imagesName')]
     private ?Patterns $patternName = null;
 
+    #[ORM\Column(length: 50, nullable: true)]
+    private ?string $reference = null;
+
 
     public function __toString()
     {
@@ -93,6 +96,18 @@ class Images
     public function setPatternName(?Patterns $patternName): static
     {
         $this->patternName = $patternName;
+
+        return $this;
+    }
+
+    public function getReference(): ?string
+    {
+        return $this->reference;
+    }
+
+    public function setReference(?string $reference): static
+    {
+        $this->reference = $reference;
 
         return $this;
     }

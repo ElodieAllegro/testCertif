@@ -6,14 +6,10 @@ use App\Entity\Patterns;
 use Doctrine\ORM\Mapping\Entity;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Validator\Constraints\All;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\Image;
-use Symfony\Component\Validator\Constraints\Positive;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\MoneyType;
-use Symfony\Component\Validator\Constraints\Required;
+
 
 class PatternsFormType extends AbstractType
 {
@@ -23,7 +19,7 @@ class PatternsFormType extends AbstractType
             ->add('ref', options:[
                 'label' => 'Reference'
             ])
-            
+
             ->add('images', FileType::class,[
                 'label'=> false,
                 'multiple'=> true,

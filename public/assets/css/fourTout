@@ -31,3 +31,196 @@
                              <option value="{{ value }}">{{ value }}</option>
                         {% endfor %}
                     </select> #}
+
+
+
+
+
+
+                    ////////////////////////////////////////////////////////////////toute ma page details
+                    {% extends "base.html.twig" %}
+
+{% block title %}Détails de
+	{{ product.name }}
+{% endblock %}
+
+{% block body %}
+
+	<main class="container py-5">
+
+
+		<section class="row py-5 ">
+			<div class="col-sm-8 col-md-8 col-lg-7 py-5">
+				<div id="carouselExample" class="carousel slide">
+					<div class="carousel-inner">
+
+						{% for image in product.images %}
+							<div class="carousel-item {% if loop.first %}active{% endif %}">
+								<img src="{{ asset('assets/uploads/products/mini/300x300-') ~ image.name }}" class="d-block w-100" id="{{ image.name }}" alt="{{ product.name }}">
+							</div>
+						{% endfor %}
+
+					</div>
+					<button class="carousel-control-prev " type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon " aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+
+					<button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+						<span class="carousel-control-next-icon " aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</button>
+				</div>
+			</div>
+
+			<div class="col-sm-10 col-md-10 col-lg-5 py-5 ">
+				<div class="col-8 d-block ">
+					<h1>{{ product.categories.name }}</h1>
+					<h2>{{ product.name }}</h2>
+					<h4 class="text-success">Prix :
+						{{ product.price / 100 }}
+						€</h4>
+				</div>
+
+
+				{% if product.stock > 0 %}
+
+					<div class="sizes-container my-3">
+						<h5>Tailles:
+						</h5>
+
+						<select class="form-select" onchange="toggleSizeSelection(this)">
+							{% for size in product.getSize() %}
+								<option value="{{ size }}">{{ size }}</option>
+							{% endfor %}
+						</select>
+
+					</div>
+					<div class="container">
+						<h5>Couleurs:</h5>
+						{% for color in product.colors %}
+							<button class="btn btn-outline-dark color-button-selectable" onclick="toggleColorSelection(this)">{{ color.name }}</button>
+						{% endfor %}
+					</div>
+
+
+					<div class="container">
+						<h5>patterns disponible:</h5>
+						<div class="row ">
+							<img src="{{asset('assets/uploads/image/patternDior.png')}}" class="patternImg" id="AF1dior.png" alt="dior">
+							<img src="{{asset('assets/uploads/image/patternGucciBlue.png')}}" class="patternImg" id="AF1gucciblue.png" alt="gucci bleu">
+							<img src="{{asset('assets/uploads/image/patternGucciBrown.png')}}" class="patternImg" id="AF1gucciBrown.png" alt="gucci marron">
+							<img src="{{asset('assets/uploads/image/patternSupreme.png')}}" class="patternImg" id="AF1supreme.png" alt="supreme">
+							<img src="{{asset('assets/uploads/image/patternLouisVuittonColor.png')}}" class="patternImg" id="AF1louisvuittoncolor.png" alt="louis vuitton colorée">
+						</div>
+					</div>
+
+					<div class="container">
+						<h5>Lacets disponible:</h5>
+						<div class="row ">
+
+							<img src="{{asset('assets/uploads/image/colorBlanc.png')}}" class="ronded" id="1" alt="lacet blanc">
+							<img src="{{asset('assets/uploads/image/colorBleu.png')}}" class="ronded" id="2" alt="bleu">
+							<img src="{{asset('assets/uploads/image/colorJaune.png')}}" class="ronded" id="3" alt="jaune">
+							<img src="{{asset('assets/uploads/image/colorNoir.png')}}" class="ronded" id="4" alt="noir">
+							<img src="{{asset('assets/uploads/image/colorRose.png')}}" class="ronded" id="5" alt="rose">
+						</div>
+					</div>
+					<a href="" class="btn btn-success my-3">Passer la commande</a>
+
+				{% else %}
+					<p class="text-danger">Temporairement en rupture de stock</p>
+				{% endif %}
+			</div>
+			<div class="col-12 py-2">
+				<div class="accordion" id="accordionExample">
+					<div class="accordion-item">
+						<h2 class="accordion-header">
+							<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+								Description
+							</button>
+						</h2>
+						<div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+							<div class="accordion-body">
+								{{ product.description }}
+							</div>
+						</div>
+					</div>
+					<div class="accordion-item">
+						<h2 class="accordion-header">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+								Livraison et retour
+							</button>
+						</h2>
+						<div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+							<div class="accordion-body">
+								La paire de sneakers après sa confection sera livré en 3 jours ouvré. Aucun retour ne sera possible.
+							</div>
+						</div>
+					</div>
+					<div class="accordion-item">
+						<h2 class="accordion-header">
+							<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+								Matière et entretien
+							</button>
+						</h2>
+						<div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+							<div class="accordion-body">
+								Comme toute chaussure en cuir les sneakers cutomisés demande un entrtien particulier, 
+								                                    nous vous demandons de mettre de l'imperméabilisant tout les mois.
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<style>
+
+		.color-button-selectable {
+			background-color: white;
+			color: #000;
+		}
+
+		.color-button-selectable.selected {
+			background-color: black;
+			color: white;
+		}
+		.patternImg {
+			width: 100px;
+			height: auto;
+		}
+		.ronded {
+			width: 100px;
+			height: auto;
+		}
+	</style>
+
+	<script>
+		// Récupérer toutes les images de pattern disponibles
+const patternImages = document.querySelectorAll('.patternImg');
+
+// Parcourir chaque image de pattern
+patternImages.forEach((image) => { // Ajouter un gestionnaire d'événement au clic sur chaque image de pattern
+image.addEventListener('click', () => { // Récupérer l'id de l'image de pattern
+const patternId = image.id;
+
+// Récupérer l'image des AF1 correspondante dans le carousel
+const carouselImages = document.querySelectorAll('.carousel-item');
+carouselImages.forEach((carouselImage) => { // Récupérer le nom de l'image dans le carousel
+const carouselImageName = carouselImage.querySelector('img').getAttribute('id');
+
+// Vérifier si le nom de l'image correspond à l'id de la pattern des AF1
+if (carouselImageName.includes(patternId)) { // Afficher l'image correspondante dans le carousel
+carouselImage.classList.add('active');
+} else { // Cacher les autres images du carousel
+carouselImage.classList.remove('active');
+}
+});
+});
+});
+	</script>
+
+
+{% endblock %}

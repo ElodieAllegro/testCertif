@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Arimo&family=Kufam:wght@700&display=swap');
 
-
+/* 
 body{
     background-color: rgb(253, 253, 253);
    font-family: 'JetBrains Mono', sans-serif;
@@ -22,6 +22,30 @@ body{
   
 }
 a{
+    text-decoration: none;
+} */
+
+
+body {
+    background-color: rgb(253, 253, 253);
+    font-family: 'JetBrains Mono', sans-serif;
+}
+
+#category {
+    color: black;
+    width: 303px;
+    height: 283px;
+}
+
+#category:hover {
+    color: azure;
+    width: 303px;
+    height: 283px;
+    background-color: #33ed16;
+    background: linear-gradient(#09f344, #33ed16);
+}
+
+a {
     text-decoration: none;
 }
 

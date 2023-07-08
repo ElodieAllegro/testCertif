@@ -69,6 +69,7 @@ class ProductsFormType extends AbstractType
                 'label' => 'Catégorie',
                 'group_by' => 'parent.name'
             ])
+            
             ->add('images', EntityType::class, [
                 'class' => Images::class,
                 'label' => 'pattern'   
